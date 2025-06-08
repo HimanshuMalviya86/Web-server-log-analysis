@@ -1,0 +1,345 @@
+hello everyone
+um I have developed a Python based tool
+that parses Apache access logs clean and
+structures the data using regax and
+pandas and extract meaningful insight
+such as request volume traffic patterns
+and 404 errors this involve file
+validation error handling and
+transforming timestamps to datetime
+objects for time based grouping.
+The purpose of this code is to parse
+Apache access logs extract useful fields
+like host time stamp request status code
+size etc clean and structure the data
+analyze web traffic and error
+patterns and generate summary metrics
+for insights here the whole code can be
+divided into six major steps uh the file
+loading and pre-check that as we can see
+it here here the file is loaded using a
+raw string uh with a read in text mode
+in coding UTF8 uh errors are ignored here
+as if any error occurred uh the code
+will directly ignore that particular
+error and after that regular regix setup
+uh here we can see that log pattern and
+after that parsing and classifying log
+log lines so for that we have created a
+function called parse line which will
+parse and classify the log lines and
+after that we have created a empty list
+for the um for uh exception handling
+where we have created two separate
+uh two separate blank list where uh uh
+one for the valid entry and one for the
+invalid entry and uh we have worked on
+this using try and accept block
+and after that uh we have
+created data into data frames uh
+here here you can see that and after
+that uh after working on creating data frames
+we have start we have worked on data
+cleaning and feature is extraction so
+here the uh one of the column in our
+data set uh size the some of the columns some of the rows
+are filled with hyphen so instead of
+that we have replaced that hyphen with
+zero and after the cleaning and uh
+feature extraction of the data we have
+worked on data analysis and matrix
+calculation so now we now we will uh
+look at the code from initial
+so in the first code block uh we have
+set the path to the log file and check
+if the file exist before proceiting if
+not raise an error and after that we
+have uh executed a for loop to run the
+initial five lines of the log files so
+we will run this code
+now so as you can see that that there
+are total five logs file in front of us
+and after that we have imported pandas
+uh regular expression re OS system and
+from date time import date time
+and after that uh we have executed a log
+pattern regular expression for Apache
+log passing parsing and this is the core
+of log parsing it defines named group to
+extract structure data from each log
+line uh here we have created function
+for that
+and the function that we have created
+tries to match a line with regix pattern
+if successful return a dictionary of
+match fields if not return none here you
+can see that the defined function where
+if the log patterns match the line it
+will return a dictionary but if it
+doesn't ma match with any of our uh log
+pattern then it will return
+none and it and after that we have
+created the empty
+list
+of after that we have created empty list
+and after
+that this code will read the file Line
+by line valid lines are passed and added
+to to the valid entry and invalid lines
+are added to invalid entry along with
+the number of debugging and handle files
+related unexpected
+errors uh after uh working on exception
+handling and try and accept block we
+have created a data frame where the uh
+it converts the list list of
+dictionaries to data from frames for
+each analysis with pandas where one data
+frame is for valid entry and another
+data frame is for invalid entry where it
+will raise the uh it will flag the
+invalid entries whenever the logs are
+invalid here as you can see that then
+after that we have printed the head of
+the data
+frame as we can see that the count of
+valid log entries and invalid log
+entries can has been shown here and
+initial five rows of the logs has also
+been presented in front of us after that
+we have
+uh took the info of our data set our
+data frame
+um yes here we can see
+that
+Here we have uh uh executed the tail of
+our data frame and here we can see that
+the in in a in our size column some of
+the rows are uh here
+in the hyphen is
+present other other than the value so
+for that we have to clean the data and
+we have replace that hyphen with zero
+and change the data type to integer of
+that particular size column
+as we executed the code after cleaning
+the
+data we can see
+that after executing the after cleaning
+the data we can see that
+the column has been replaced with zero
+instead of that hyphen presents in the
+column afterwards we have worked on
+parsing and formatting timestamps here
+we have converted the third time stamp
+string to a proper datetime object and
+this enables time based filtering and
+analysis as you can see that we
+have changed the format and converted
+the timestamps string to proper datetime
+object as we will execute this code
+here the here
+afterwards we can see that that the
+uh date time data type of that object
+has been changed and after that we will
+extract the file name from request
+column
+uh for further use
+execute this
+code so this code is executed
+successfully and now we will extract
+file extension from file
+name here we have extracted file
+extension from file names uh it is very
+useful for understanding what types of
+file were requested as we will execute
+this code and we will drop our request
+column as we have already uh bring our
+method file and protocol out of it so we
+we will just drop that particular
+request
+column as so now as we have printed the
+head of the particular data frame we can
+see that the method file and protocol
+file extension are four separated fields
+out of the request column
+so here in this block of code we have
+changed the data type of uh status
+column to int as we will see that as we
+have executed it and after taking the
+input out we can see that the status
+column the data type has been changed to
+integer
+and see that now we will come to the
+questions that has been
+asked sent to
+first so in this first question we have
+asked to count the total number of HTTP
+request so we have count this number of
+HTTP request using length function
+applied on our data frame so here we can
+see that the total number of HTTP
+requests are uh 77 lakh
+24,836 HTTP
+request and after that the number of
+unique host has been asked us to find
+out so we have using n unique function
+applied on our host
+um host column on data frame so here we
+can count that the total number of
+unique host are just two uh one is local
+and one is remote both are our hosts and
+after that date wise unique file name
+counts so basically this block of quotes
+uh we have executed to find the unique
+file name counts based on date so
+here we have applied the non-unique
+function and two dict function where it
+will take out the unique values and put
+it into the dictionaries and show how
+many different users users access to the
+server afterwards in the fourth question
+we have worked on our status column
+where we have to find number of 404
+response codes so here we have applied a
+comparing operator which is double
+equals to and after that comparing we
+have sum all of that values and after
+that we will we have founded that there
+are
+23,570s 404 response codes in our data
+frame
+basically this code shows us that how
+many count of requested return not found
+errors and after that we will move to
+question number five where we have to
+find top 15 file names with 404
+responses so here we have uh used uh
+more than three functions so first of
+all which is a group by so first uh the
+basically the uh uh code block uses our
+column file name and group by based on
+the file length and uh sort
+values uh in descending so that the
+value with higher so the data with
+higher value comes on the top and
+accordingly the based on sorting the
+data will execute
+So basically this block of code
+identifies which files were most
+frequently not
+found as we will run this
+code you can see
+that
+here these are these are the list where
+we can see that how many files from that
+particular file name has not been found
+during the execution of the
+code so afterward we have worked on uh
+top 15 file extension with 404 responses
+so basically here instead of file name
+we have worked on file extensions here
+we have grouped by the file extension
+function where we have sorted the value
+uh descending presenting the uh highest
+value uh on the top and accordingly
+decreasing from top from onwards
+and as we will run this code we can see
+that these are the file extensions which
+have
+uh shows the file types that has the
+most 404 responses
+so in this block of code we have
+basically extracted date from the time
+stamp and because we have the need for
+this particular question question where
+we have to find the total bandwidth per
+day for July 1995 so here let let's
+execute this code will file that we have
+executed we have extracted date out of
+the time stamp as you can see
+that see that we can see that we have
+extracted date out of the time stamp and
+after that this block of code will
+filter the July 1995 data and sums up
+total response size
+uh bandwidth per
+Okay let's execute this
+code here we have applied the group by
+function on the column that we have
+created T str uh and sums up all of the
+value and we have we will put that
+particular values that we have summed up
+into the dictionary as you can see
+that so here we can see the output total
+bandwidth for July
+1995 here we can see that the bandwidth
+size for particular bite
+size and in our next question uh we have
+to find hourly request distribution
+within 24 hours so here also we have uh
+extracted hour from our time stamp
+column from our data set and we have
+applied group by function on our column
+and based on size we have made uh we
+have put all of those value into the
+dictionary and we have printed the early
+requests as we will execute you can see
+that you can see that the based on the
+hours how many request has
+made based on the early
+basis it helps us understand traffic
+pattern peak hours and load traffic
+times afterwards in the next question we
+have find the top 10 most requested file
+names so we have as we have worked on
+this previously uh we have put the same
+function in our code that uh instead we
+have worked on in this code we have
+worked on file name column and sorted
+the values in the descending order
+presenting only top 10 columns uh top 10
+values of from the data set as we will
+execute this code you can see that these
+are the top 10 values from our data set
+group by on file name which are the top
+10 most requested file names it reveals
+the most popular pages of
+files
+so it is our last question so here we
+have uh worked on status counts so HTTP
+status code distribution so it gives a
+full breakdown of how many times each
+HTTP status code occurred so here for
+that we have applied a value count
+function and to put all of the value we
+have applied to dictionary two function
+to put all of the values inside a
+dictionary
+uh working on this project is a very
+great experience for me as I have worked
+on various KPIs such as total number of
+requests uh raised and number of unique
+users frequency of 404 errors and and I
+learned how to deal with timestamps i
+converted time stamp string to date time
+object and after that
+uh some of the insights I got from this
+analysis were that GI files were the
+most common type requested and most 404
+errors came from missing HTML pages or
+htm typos in file
+names the challenges that I have faced
+during this particular analysis project
+is that parsing inconsistent
+inconsistent or malformed lines was a
+challenge which I handled by segregating
+invalid lines also converting timestamps
+to time zones away date time was tricky
+but necessary for accurate grouping and
+filtering
+
+All
+
+For you
+

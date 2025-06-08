@@ -1,4 +1,4 @@
-# Web-server-log-analysis
+# Calgary-http-assessment
 Tools Used:
 Python (main language)
 Pandas: for data manipulation
